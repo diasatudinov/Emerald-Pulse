@@ -1,3 +1,10 @@
+//
+//  IFSettingsViewModel.swift
+//  Emerald Pulse
+//
+//
+
+
 import SwiftUI
 
 class IFSettingsViewModel: ObservableObject {
