@@ -1,3 +1,10 @@
+//
+//  ZZDeviceManager.swift
+//  Emerald Pulse
+//
+//
+
+
 import UIKit
 
 class ZZDeviceManager {

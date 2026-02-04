@@ -1,3 +1,10 @@
+//
+//  ZZCoinBg.swift
+//  Emerald Pulse
+//
+//
+
+
 import SwiftUI
 
 struct ZZCoinBg: View {
@@ -5,15 +12,15 @@ struct ZZCoinBg: View {
     var height: CGFloat = ZZDeviceManager.shared.deviceType == .pad ? 80:62
     var body: some View {
         ZStack {
-            Image("coinsBgZZ")
+            Image(.coinsBgEP)
                 .resizable()
                 .scaledToFit()
             
             Text("\(user.money)")
                 .font(.system(size: ZZDeviceManager.shared.deviceType == .pad ? 45:28, weight: .bold))
-                .foregroundStyle(.white)
+                .foregroundStyle(.yellow)
                 .textCase(.uppercase)
-                .offset(x: 15, y: 2)
+                .offset(x: 15, y: 0)
             
             
             

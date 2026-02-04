@@ -1,3 +1,10 @@
+//
+//  ZZUser.swift
+//  Emerald Pulse
+//
+//
+
+
 import SwiftUI
 
 class ZZUser: ObservableObject {
