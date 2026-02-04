@@ -2,7 +2,6 @@
 //  PGLoaderView.swift
 //  Emerald Pulse
 //
-//  Created by Dias Atudinov on 04.02.2026.
 //
 
 
@@ -15,7 +14,7 @@ struct EPLoaderView: View {
        var body: some View {
            ZStack {
                ZStack {
-                   Image(.loaderViewLogoZZ)
+                   Image(.loaderViewLogoEP)
                        .resizable()
                        .ignoresSafeArea()
                        .scaledToFill()
@@ -26,7 +25,7 @@ struct EPLoaderView: View {
                
                VStack(spacing: 0) {
                    
-                   Image(.loaderViewLogoZZ)
+                   Image(.loaderViewLogoEP)
                        .resizable()
                        .scaledToFit()
                        .frame(height: 200)
@@ -82,5 +81,5 @@ struct EPLoaderView: View {
    }
 
 #Preview {
-    PGLoaderView()
+    EPLoaderView()
 }

@@ -2,7 +2,6 @@
 //  IFDailyView.swift
 //  Emerald Pulse
 //
-//  Created by Dias Atudinov on 04.02.2026.
 //
 
 
@@ -25,7 +24,7 @@ struct EPDailyView: View {
                             presentationMode.wrappedValue.dismiss()
                             
                         } label: {
-                            Image(.backIconIF)
+                            Image(.backIconEP)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: ZZDeviceManager.shared.deviceType == .pad ? 100:60)
@@ -39,19 +38,19 @@ struct EPDailyView: View {
                 }
                 
                 
-                Image(.dailyBgIF)
+                Image(.dailyBgEP)
                     .resizable()
                     .scaledToFit()
-                    .padding(.trailing, 50)
                     .overlay(alignment: .bottom) {
                         Button {
                             claim.toggle()
                         } label: {
                             
-                            Image(!claim ? .claimBtnIF:.collectedBtnIF)
+                            Image(!claim ? .claimBtnEP:.collectedBtnEP)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ZZDeviceManager.shared.deviceType == .pad ? 100:75)
+                                .frame(height: ZZDeviceManager.shared.deviceType == .pad ? 100:50)
+                                .padding(.bottom, 25)
                         }
                     }
                 
@@ -59,7 +58,7 @@ struct EPDailyView: View {
             }
         }.background(
             ZStack {
-                Image(.appBgIF)
+                Image(.appBgEP)
                     .resizable()
                     .ignoresSafeArea()
                     .scaledToFill()
@@ -69,5 +68,5 @@ struct EPDailyView: View {
 }
 
 #Preview {
-    IFDailyView()
+    EPDailyView()
 }
