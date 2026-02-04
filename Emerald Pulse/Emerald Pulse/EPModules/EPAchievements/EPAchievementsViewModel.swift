@@ -10,11 +10,11 @@ import SwiftUI
 class EPAchievementsViewModel: ObservableObject {
     
     @Published var achievements: [NEGAchievement] = [
-        NEGAchievement(image: "achieve1ImagePG", title: "achieve1TextPG", isAchieved: false),
-        NEGAchievement(image: "achieve2ImagePG", title: "achieve2TextPG", isAchieved: false),
-        NEGAchievement(image: "achieve3ImagePG", title: "achieve3TextPG", isAchieved: false),
-        NEGAchievement(image: "achieve4ImagePG", title: "achieve4TextPG", isAchieved: false),
-        NEGAchievement(image: "achieve5ImagePG", title: "achieve5TextPG", isAchieved: false),
+        NEGAchievement(image: "achieve1ImageEP", title: "achieve1TextPG", isAchieved: false),
+        NEGAchievement(image: "achieve2ImageEP", title: "achieve2TextPG", isAchieved: false),
+        NEGAchievement(image: "achieve3ImageEP", title: "achieve3TextPG", isAchieved: false),
+        NEGAchievement(image: "achieve4ImageEP", title: "achieve4TextPG", isAchieved: false),
+        NEGAchievement(image: "achieve5ImageEP", title: "achieve5TextPG", isAchieved: false),
     ] {
         didSet {
             saveAchievementsItem()
