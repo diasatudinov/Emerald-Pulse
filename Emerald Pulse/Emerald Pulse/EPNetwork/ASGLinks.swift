@@ -1,3 +1,10 @@
+//
+//  ASGLinks.swift
+//  Emerald Pulse
+//
+//
+
+
 
 import SwiftUI
 

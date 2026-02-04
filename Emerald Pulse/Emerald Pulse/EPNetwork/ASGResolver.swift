@@ -1,3 +1,10 @@
+//
+//  ASGResolver.swift
+//  Emerald Pulse
+//
+//
+
+
 import Foundation
 
 class ASGResolver: NSObject, URLSessionTaskDelegate {
