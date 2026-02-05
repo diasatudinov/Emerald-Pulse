@@ -87,13 +87,13 @@ struct EPMenuView: View {
             }
         )
         .fullScreenCover(isPresented: $showGame) {
-            //                GameView(viewModel: shopVM)
+            GameViewEP()
         }
         .fullScreenCover(isPresented: $showSettings) {
             EPSettingsView()
         }
         .fullScreenCover(isPresented: $showAchievement) {
-                            EPAchievementsView()
+            EPAchievementsView()
         }
         .fullScreenCover(isPresented: $showDailyReward) {
             EPDailyView()

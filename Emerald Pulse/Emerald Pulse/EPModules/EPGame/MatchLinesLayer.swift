@@ -1,3 +1,10 @@
+//
+//  MatchLinesLayer.swift
+//  Emerald Pulse
+//
+//
+
+
 import SwiftUI
 
 // Рисуем линии между центром "числа" и центром "слова"
@@ -28,7 +35,7 @@ struct MatchLinesLayer: View {
                     path.addCurve(to: end, control1: ctrl1, control2: ctrl2)
 
                     context.stroke(path,
-                                   with: .color(.green),
+                                   with: .color(.lineYellow),
                                    lineWidth: 6)
                 }
             }

@@ -10,7 +10,7 @@ import SwiftUI
 struct Emerald_PulseApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EPMenuView()
         }
     }
 }

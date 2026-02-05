@@ -1,3 +1,10 @@
+//
+//  NumberItem.swift
+//  Emerald Pulse
+//
+//
+
+
 import SwiftUI
 
 struct NumberItem: Identifiable {
@@ -7,8 +14,9 @@ struct NumberItem: Identifiable {
 
 struct WordItem: Identifiable {
     let id = UUID()
-    let text: String
-    let numberValue: Int  // чтобы знать правильную пару
+    let imageName: String   // "1", "2", ... "11", "20", ... "100"
+    let text: String        // "seventeen", "twenty-one", ...
+    let numberValue: Int    // правильное число для этой карточки
 }
 
 struct MatchPair: Identifiable, Equatable {
@@ -35,19 +43,28 @@ final class MatchGameViewModel: ObservableObject {
         selectedNumberID = nil
         selectedWordID = nil
         matches.removeAll()
-        statusText = "Тапни число сверху, затем слово снизу."
+        statusText = "Tap a number, then tap the correct word card."
 
-        // 3 уникальных числа
-        var set = Set<Int>()
-        while set.count < 3 {
-            set.insert(Int.random(in: 1...100))
+        // 3 числа так, чтобы не было одинаковых imageKey (иначе 2 одинаковые картинки снизу)
+        var picked: [Int] = []
+        var usedImageKeys = Set<String>()
+
+        while picked.count < 3 {
+            let candidate = Int.random(in: 1...100)
+            let key = WordImageMapper.imageName(for: candidate)
+            if usedImageKeys.contains(key) { continue }
+            usedImageKeys.insert(key)
+            picked.append(candidate)
         }
-        let vals = Array(set).sorted()
 
-        numbers = vals.map { NumberItem(value: $0) }
+        numbers = picked.map { NumberItem(value: $0) }
 
-        let generatedWords = vals.map { v in
-            WordItem(text: RussianNumberSpeller.spell(v), numberValue: v)
+        let generatedWords = picked.map { v in
+            WordItem(
+                imageName: WordImageMapper.imageName(for: v),
+                text: EnglishNumberSpeller.spell(v),
+                numberValue: v
+            )
         }
         words = generatedWords.shuffled()
     }
@@ -74,6 +91,7 @@ final class MatchGameViewModel: ObservableObject {
 
         if numberItem.value == wordItem.numberValue {
             matches.append(MatchPair(numberID: nID, wordID: id))
+            ZZUser.shared.updateUserMoney(for: 10)
             statusText = matches.count == 3 ? "Отлично! Все пары соединены ✅" : "Верно! Продолжай."
         } else {
             statusText = "Неверно ❌ Попробуй другую корзину."
@@ -124,5 +142,37 @@ enum RussianNumberSpeller {
 
         if o == 0 { return tens[t] ?? "" }
         return "\(tens[t] ?? "") \(ones[o] ?? "")"
+    }
+}
+
+enum EnglishNumberSpeller {
+    static func spell(_ n: Int) -> String {
+        precondition(1...100 ~= n)
+
+        if n == 100 { return "one hundred" }
+
+        let ones: [Int: String] = [
+            1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+            6: "six", 7: "seven", 8: "eight", 9: "nine"
+        ]
+
+        let teens: [Int: String] = [
+            10: "ten", 11: "eleven", 12: "twelve", 13: "thirteen", 14: "fourteen",
+            15: "fifteen", 16: "sixteen", 17: "seventeen", 18: "eighteen", 19: "nineteen"
+        ]
+
+        let tens: [Int: String] = [
+            2: "twenty", 3: "thirty", 4: "forty", 5: "fifty",
+            6: "sixty", 7: "seventy", 8: "eighty", 9: "ninety"
+        ]
+
+        if n < 10 { return ones[n] ?? "" }
+        if 10...19 ~= n { return teens[n] ?? "" }
+
+        let t = n / 10
+        let o = n % 10
+
+        if o == 0 { return tens[t] ?? "" }
+        return "\(tens[t] ?? "")-\(ones[o] ?? "")"
     }
 }
